@@ -1,16 +1,25 @@
-# React + Vite
+# Salman Jaher - Portfolio and Resume Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my website built with React and Framer Motion, showcasing my portfolio and resume. Photos are copyright Salman Jaher. Feel free to explore the code and customize it for your own use.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive design for both desktop and mobile
+- 3D carousel for portfolio items on desktop
+- Swipeable gallery for portfolio items on mobile
+- Lightbox feature for viewing images in detail
+- Smooth animations and transitions using Framer Motion
+- Resume section with downloadable PDF
+- Navigation between sections with animated transitions
+- Contact information and social media links
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- React
+- Framer Motion
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (v14 or higher)
+- npm or yarn
