@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowUp } from 'react-icons/fa';
 
@@ -45,19 +45,19 @@ const ResumePage = ({ onNavigateHome }) => {
   return (
     <div
       ref={scrollRef}
-      className='relative w-full min-h-screen flex flex-col items-center justify-start pt-32 pb-32 px-8 bg-gray-900 text-white overflow-y-auto'
+      className='relative w-full min-h-screen flex flex-col items-center justify-start pt-32 pb-32 bg-gray-900 text-white overflow-y-auto'
       onWheel={handleScroll}
     >
       <button
         onClick={navigateHome}
-        className='absolute top-10 flex cursor-pointer flex-col items-center space-y-1 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20'
+        className='absolute top-10 left-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20 pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)]'
       >
         <FaArrowUp />
         <span>home</span>
       </button>
 
       <motion.div
-        className='flex w-full max-w-5xl flex-col items-center gap-8 md:flex-row md:justify-around'
+        className='flex w-full max-w-5xl flex-col items-center gap-8 px-8 md:flex-row md:justify-around'
         variants={containerVariants}
         initial='hidden'
         animate='visible'
@@ -84,7 +84,7 @@ const ResumePage = ({ onNavigateHome }) => {
         </motion.div>
       </motion.div>
 
-      <div className='absolute bottom-10 right-10 text-xs opacity-75 lowercase'>
+      <div className='absolute bottom-10 right-10 text-xs opacity-75 lowercase pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)]'>
         want a copy?
       </div>
     </div>

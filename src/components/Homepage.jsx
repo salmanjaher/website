@@ -1,5 +1,13 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// src/components/Homepage.jsx
+
+import React, { useState, useRef } from 'react';
+// UPDATED: Import new hooks from Framer Motion
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion';
 import { FaArrowDown, FaArrowRight } from 'react-icons/fa';
 import AnimatedName from './AnimatedName';
 
@@ -11,6 +19,27 @@ const Homepage = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(!playAnimation);
   const [hasNavigated, setHasNavigated] = useState(false);
+
+  // NEW: Hooks and handlers for the 3D tilt effect
+  const cardRef = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-150, 150], [15, -15]); // Tilt up and down
+  const rotateY = useTransform(x, [-150, 150], [-15, 15]); // Tilt left and right
+
+  const handleMouseMove = (event) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    x.set(event.clientX - rect.left - rect.width / 2);
+    y.set(event.clientY - rect.top - rect.height / 2);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+  // End of new logic
 
   const nameAnimationDuration = 2.0;
   const nameMoveDuration = 0.75;
@@ -58,7 +87,11 @@ const Homepage = ({
           </motion.div>
         ) : (
           <motion.div key='content' className='h-full w-full'>
-            <div className='flex h-full w-full items-center justify-center'>
+            {/* UPDATED: Added perspective to this container */}
+            <div
+              className='flex h-full w-full items-center justify-center'
+              style={{ perspective: '1000px' }}
+            >
               <div className='flex w-full max-w-4xl flex-col items-center gap-8 px-8 md:flex-row md:justify-between'>
                 <motion.div
                   className='h-36 w-36 rounded-full bg-gray-300 md:h-48 md:w-48'
@@ -73,8 +106,13 @@ const Homepage = ({
                   }}
                 ></motion.div>
 
+                {/* UPDATED: Added ref, handlers, and style props to the welcome box */}
                 <motion.div
+                  ref={cardRef}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
                   className='flex w-full flex-col justify-between rounded-2xl bg-white/10 p-6 backdrop-blur-md z-10 md:w-96 h-64'
+                  style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{
@@ -84,7 +122,7 @@ const Homepage = ({
                       : returnAnimationDelay.box,
                   }}
                 >
-                  <div>
+                  <div style={{ transform: 'translateZ(40px)' }}>
                     <h2 className='text-lg font-bold text-white lowercase'>
                       welcome
                     </h2>
@@ -93,7 +131,10 @@ const Homepage = ({
                       yourself.
                     </p>
                   </div>
-                  <div className='flex space-x-6 text-white lowercase'>
+                  <div
+                    className='flex space-x-6 text-white lowercase'
+                    style={{ transform: 'translateZ(20px)' }}
+                  >
                     <button
                       onClick={onNavigateToResume}
                       className='hover:underline z-20'
@@ -111,7 +152,7 @@ const Homepage = ({
               </div>
             </div>
 
-            <div className='absolute bottom-10 inset-x-0 flex justify-center z-10'>
+            <div className='absolute bottom-10 inset-x-0 flex justify-center z-10 pb-[env(safe-area-inset-bottom)]'>
               <div className='flex flex-col items-center'>
                 <motion.div
                   layoutId={playAnimation ? 'name' : undefined}
@@ -146,7 +187,7 @@ const Homepage = ({
 
             <motion.div
               onClick={onNavigateToPortfolio}
-              className='absolute right-10 top-1/2 -translate-y-1/2 hidden cursor-pointer items-center space-x-2 text-white text-xs opacity-75 transition-opacity hover:opacity-100 z-10 md:flex'
+              className='absolute right-10 top-1/2 -translate-y-1/2 hidden cursor-pointer items-center space-x-2 text-white text-xs opacity-75 transition-opacity hover:opacity-100 z-10 md:flex pr-[env(safe-area-inset-right)]'
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Homepage from './components/Homepage';
 import ResumePage from './components/ResumePage';
 import PortfolioPage from './components/PortfolioPage';
@@ -42,6 +42,7 @@ function App() {
         {activeSection === 'home' && (
           <motion.div
             key='home'
+            className='w-full h-full'
             custom={direction}
             variants={homeVariants}
             initial='initial'
@@ -66,6 +67,7 @@ function App() {
         {activeSection === 'resume' && (
           <motion.div
             key='resume'
+            className='w-full h-full'
             initial={{ y: '100vh' }}
             animate={{ y: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
             exit={{
@@ -85,6 +87,7 @@ function App() {
         {activeSection === 'portfolio' && (
           <motion.div
             key='portfolio'
+            className='w-full h-full'
             initial={{ x: '100vw' }}
             animate={{ x: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
             exit={{

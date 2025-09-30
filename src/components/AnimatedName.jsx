@@ -1,8 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const AnimatedName = ({ onAnimationComplete, duration = 2 }) => {
   return (
-    <div className='relative text-5xl font-bold'>
+    <div className='relative text-4xl md:text-5xl font-bold'>
       <span className='text-gray-500 whitespace-nowrap lowercase'>
         salman jaher
       </span>

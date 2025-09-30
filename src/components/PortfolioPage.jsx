@@ -76,9 +76,9 @@ const PortfolioPage = ({ onNavigateHome }) => {
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50;
     if (info.offset.x > swipeThreshold) {
-      paginate(-1);
+      paginate(-1); // Previous
     } else if (info.offset.x < -swipeThreshold) {
-      paginate(1);
+      paginate(1); // Next
     }
   };
 
@@ -86,13 +86,13 @@ const PortfolioPage = ({ onNavigateHome }) => {
     <div className='relative h-screen w-full flex flex-col items-center justify-center bg-gray-900 text-white overflow-hidden'>
       <button
         onClick={onNavigateHome}
-        className='absolute left-10 top-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-30'
+        className='absolute left-10 top-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-30 pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)]'
       >
         <FaArrowLeft />
         <span>home</span>
       </button>
 
-      <div className='absolute top-10 right-10 text-xs opacity-75 lowercase z-20'>
+      <div className='absolute top-10 right-10 text-xs opacity-75 lowercase z-20 pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)]'>
         social links
       </div>
 
@@ -216,6 +216,7 @@ const PortfolioPage = ({ onNavigateHome }) => {
           })}
         </div>
       )}
+
       <AnimatePresence>
         {selectedPhoto && (
           <motion.div
