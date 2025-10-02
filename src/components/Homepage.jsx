@@ -1,12 +1,7 @@
 // src/components/Homepage.jsx
 
-import React, { useState, useRef } from 'react';
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowDown, FaArrowRight } from 'react-icons/fa';
 import AnimatedName from './AnimatedName';
 
@@ -18,25 +13,18 @@ const Homepage = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(!playAnimation);
   const [hasNavigated, setHasNavigated] = useState(false);
+  const mainRef = useRef(null);
 
-  const cardRef = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-150, 150], [15, -15]);
-  const rotateY = useTransform(x, [-150, 150], [-15, 15]);
-
-  const handleMouseMove = (event) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    x.set(event.clientX - rect.left - rect.width / 2);
-    y.set(event.clientY - rect.top - rect.height / 2);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  useEffect(() => {
+    // This effect prevents the "bounce" scroll on touch devices for this component
+    const element = mainRef.current;
+    if (!element) return;
+    const preventScroll = (e) => e.preventDefault();
+    element.addEventListener('touchmove', preventScroll, { passive: false });
+    return () => {
+      element.removeEventListener('touchmove', preventScroll);
+    };
+  }, []);
 
   const nameAnimationDuration = 2.0;
   const nameMoveDuration = 0.75;
@@ -71,7 +59,8 @@ const Homepage = ({
 
   return (
     <div
-      className='relative flex h-screen w-full items-center justify-center overflow-hidden overscroll-y-contain'
+      ref={mainRef}
+      className='relative flex h-screen w-full items-center justify-center overflow-hidden'
       onWheel={handleScroll}
     >
       <AnimatePresence mode='wait'>
@@ -103,9 +92,6 @@ const Homepage = ({
                 ></motion.div>
 
                 <motion.div
-                  ref={cardRef}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
                   className='flex w-full flex-col justify-between rounded-2xl bg-white/10 p-6 backdrop-blur-md z-10 md:w-96 h-64'
                   style={{ transformStyle: 'preserve-3d' }}
                   initial={{ opacity: 0 }}
@@ -132,7 +118,6 @@ const Homepage = ({
                       yourself.
                     </p>
                   </div>
-                  {/* UPDATED: Links are now underlined on mobile */}
                   <div
                     className='flex space-x-6 text-white lowercase'
                     style={{ transform: 'translateZ(20px)' }}
@@ -169,7 +154,6 @@ const Homepage = ({
                   salman jaher
                 </motion.div>
 
-                {/* UPDATED: "resume" and down arrow are now visible on mobile */}
                 <motion.div
                   onClick={onNavigateToResume}
                   className='mt-2 flex flex-col items-center space-y-1 text-white text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20'
