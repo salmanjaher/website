@@ -156,7 +156,7 @@ const Homepage = ({
 
                 <motion.div
                   onClick={onNavigateToResume}
-                  className='mt-2 flex flex-col items-center space-y-1 text-white text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20'
+                  className='mt-2 hidden md:flex flex-col items-center space-y-1 text-white text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
