@@ -1,7 +1,6 @@
 // src/components/Homepage.jsx
 
 import React, { useState, useRef } from 'react';
-// UPDATED: Import new hooks from Framer Motion
 import {
   motion,
   AnimatePresence,
@@ -20,13 +19,12 @@ const Homepage = ({
   const [isLoaded, setIsLoaded] = useState(!playAnimation);
   const [hasNavigated, setHasNavigated] = useState(false);
 
-  // NEW: Hooks and handlers for the 3D tilt effect
   const cardRef = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useTransform(y, [-150, 150], [15, -15]); // Tilt up and down
-  const rotateY = useTransform(x, [-150, 150], [-15, 15]); // Tilt left and right
+  const rotateX = useTransform(y, [-150, 150], [15, -15]);
+  const rotateY = useTransform(x, [-150, 150], [-15, 15]);
 
   const handleMouseMove = (event) => {
     if (!cardRef.current) return;
@@ -39,7 +37,6 @@ const Homepage = ({
     x.set(0);
     y.set(0);
   };
-  // End of new logic
 
   const nameAnimationDuration = 2.0;
   const nameMoveDuration = 0.75;
@@ -74,7 +71,7 @@ const Homepage = ({
 
   return (
     <div
-      className='relative flex h-screen w-full items-center justify-center overflow-hidden'
+      className='relative flex h-screen w-full items-center justify-center overflow-hidden overscroll-y-contain'
       onWheel={handleScroll}
     >
       <AnimatePresence mode='wait'>
@@ -87,7 +84,6 @@ const Homepage = ({
           </motion.div>
         ) : (
           <motion.div key='content' className='h-full w-full'>
-            {/* UPDATED: Added perspective to this container */}
             <div
               className='flex h-full w-full items-center justify-center'
               style={{ perspective: '1000px' }}
@@ -106,20 +102,25 @@ const Homepage = ({
                   }}
                 ></motion.div>
 
-                {/* UPDATED: Added ref, handlers, and style props to the welcome box */}
                 <motion.div
                   ref={cardRef}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                   className='flex w-full flex-col justify-between rounded-2xl bg-white/10 p-6 backdrop-blur-md z-10 md:w-96 h-64'
-                  style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+                  style={{ transformStyle: 'preserve-3d' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
+                  whileHover={{ scale: 1.05, z: 30 }}
                   transition={{
-                    duration: 0.8,
-                    delay: playAnimation
-                      ? initialAnimationDelay.box
-                      : returnAnimationDelay.box,
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 20,
+                    opacity: {
+                      duration: 0.8,
+                      delay: playAnimation
+                        ? initialAnimationDelay.box
+                        : returnAnimationDelay.box,
+                    },
                   }}
                 >
                   <div style={{ transform: 'translateZ(40px)' }}>
@@ -131,19 +132,20 @@ const Homepage = ({
                       yourself.
                     </p>
                   </div>
+                  {/* UPDATED: Links are now underlined on mobile */}
                   <div
                     className='flex space-x-6 text-white lowercase'
                     style={{ transform: 'translateZ(20px)' }}
                   >
                     <button
                       onClick={onNavigateToResume}
-                      className='hover:underline z-20'
+                      className='underline md:no-underline md:hover:underline z-20'
                     >
                       resume
                     </button>
                     <button
                       onClick={onNavigateToPortfolio}
-                      className='hover:underline z-20'
+                      className='underline md:no-underline md:hover:underline z-20'
                     >
                       portfolio
                     </button>
@@ -167,9 +169,10 @@ const Homepage = ({
                   salman jaher
                 </motion.div>
 
+                {/* UPDATED: "resume" and down arrow are now visible on mobile */}
                 <motion.div
                   onClick={onNavigateToResume}
-                  className='mt-2 hidden flex-col items-center space-y-1 text-white text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20 md:flex'
+                  className='mt-2 flex flex-col items-center space-y-1 text-white text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
