@@ -3,10 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowUp } from 'react-icons/fa';
-// UPDATED: Import the data from its new file
 import resumeData from '../data/resumeData.js';
-
-// The large `resumeData` object has been removed from here
 
 const ResumeCard = ({ title, children, className = '', ...props }) => (
   <motion.div
@@ -32,15 +29,33 @@ const cardVariants = {
 };
 
 const ResumePage = ({ onNavigateHome }) => {
+  // RE-ADDED: State and ref for scroll navigation
+  const [hasNavigated, setHasNavigated] = useState(false);
   const scrollRef = useRef(null);
+
+  // RE-ADDED: Handlers for navigation
+  const navigateHome = () => {
+    if (!hasNavigated) {
+      setHasNavigated(true);
+      onNavigateHome();
+    }
+  };
+
+  const handleScroll = (event) => {
+    if (scrollRef.current?.scrollTop === 0 && event.deltaY < 0) {
+      navigateHome();
+    }
+  };
 
   return (
     <div
       ref={scrollRef}
+      // RE-ADDED: onWheel handler
+      onWheel={handleScroll}
       className='relative w-full min-h-screen bg-gray-900 text-white overflow-y-auto px-8 md:px-16 lg:px-24'
     >
       <button
-        onClick={onNavigateHome}
+        onClick={navigateHome}
         className='absolute top-10 left-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-20 pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)]'
       >
         <FaArrowUp />
