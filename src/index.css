@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #111827;
+  @apply bg-gray-900 font-sans text-gray-200;
+  background-attachment: fixed;
 }
 
 ::-webkit-scrollbar {

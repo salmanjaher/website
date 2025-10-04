@@ -11,7 +11,7 @@ const ResumeCard = ({ title, children, className = '', ...props }) => (
     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     {...props}
   >
-    <h2 className='text-sm font-bold tracking-widest text-gray-400 mb-4 lowercase'>
+    <h2 className='text-sm font-bold tracking-widest text-gray-400 mb-4 lowercase font-display'>
       {title}
     </h2>
     {children}

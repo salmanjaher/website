@@ -1,8 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['inter', ...defaultTheme.fontFamily.sans],
+        display: ['poppins', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };

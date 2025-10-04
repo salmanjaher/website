@@ -110,7 +110,7 @@ const Homepage = ({
                   }}
                 >
                   <div style={{ transform: 'translateZ(40px)' }}>
-                    <h2 className='text-lg font-bold text-white lowercase'>
+                    <h2 className='text-lg font-bold text-white lowercase font-display'>
                       Hi! I'm Salman jaher.
                     </h2>
                     <p className='mt-2 text-gray-200 lowercase'>
@@ -144,7 +144,7 @@ const Homepage = ({
               <div className='flex flex-col items-center'>
                 <motion.div
                   layoutId={playAnimation ? 'name' : undefined}
-                  className='text-4xl md:text-5xl font-bold text-white whitespace-nowrap lowercase'
+                  className='text-4xl md:text-5xl font-bold text-white whitespace-nowrap lowercase font-display'
                   initial={!playAnimation ? { opacity: 0, y: 50 } : {}}
                   animate={!playAnimation ? { opacity: 1, y: 0 } : {}}
                   transition={{
