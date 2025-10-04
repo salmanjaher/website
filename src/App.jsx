@@ -15,9 +15,9 @@ function App() {
       const gradients = [];
 
       for (let i = 0; i < numOrbs; i++) {
-        const x = Math.floor(Math.random() * 100); // Random X position (0-100%)
-        const y = Math.floor(Math.random() * 100); // Random Y position (0-100%)
-        const size = Math.floor(Math.random() * 400 + 400); // Random size (400-800px)
+        const x = Math.floor(Math.random() * 100);
+        const y = Math.floor(Math.random() * 100);
+        const size = Math.floor(Math.random() * 400 + 400);
 
         gradients.push(
           `radial-gradient(${size}px circle at ${x}% ${y}%, rgba(147, 197, 253, 0.1), transparent 50%)`
@@ -28,7 +28,7 @@ function App() {
     };
 
     createRandomOrbs();
-  }, []); // The empty dependency array ensures this runs only once
+  }, []);
 
   const homeVariants = {
     initial: (direction) => {

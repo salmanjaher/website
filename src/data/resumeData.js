@@ -1,5 +1,3 @@
-// src/data/resumeData.js
-
 const resumeData = {
   education: {
     title: 'education',
