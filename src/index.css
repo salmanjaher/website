@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-900;
+  background-color: #111827; /* bg-gray-900 */
 }
 
 ::-webkit-scrollbar {

@@ -1,9 +1,8 @@
-// src/components/Homepage.jsx
-
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowDown, FaArrowRight } from 'react-icons/fa';
 import AnimatedName from './AnimatedName';
+import profilePicture from '../assets/images/P1144275.jpeg';
 
 const Homepage = ({
   onNavigateToResume,
@@ -16,7 +15,6 @@ const Homepage = ({
   const mainRef = useRef(null);
 
   useEffect(() => {
-    // This effect prevents the "bounce" scroll on touch devices for this component
     const element = mainRef.current;
     if (!element) return;
     const preventScroll = (e) => e.preventDefault();
@@ -77,9 +75,11 @@ const Homepage = ({
               className='flex h-full w-full items-center justify-center'
               style={{ perspective: '1000px' }}
             >
-              <div className='flex w-full max-w-4xl flex-col items-center gap-8 px-8 md:flex-row md:justify-between'>
-                <motion.div
-                  className='h-36 w-36 rounded-full bg-gray-300 md:h-48 md:w-48'
+              <div className='flex w-full max-w-4xl flex-col items-center gap-12 px-8 md:flex-row md:justify-between md:gap-16'>
+                <motion.img
+                  src={profilePicture}
+                  alt='salman jaher'
+                  className='h-64 aspect-square rounded-full object-cover shadow-lg'
                   initial={{ x: '-100vw', opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{
@@ -89,10 +89,10 @@ const Homepage = ({
                       ? initialAnimationDelay.picture
                       : returnAnimationDelay.picture,
                   }}
-                ></motion.div>
+                />
 
                 <motion.div
-                  className='flex w-full flex-col justify-between rounded-2xl bg-white/10 p-6 backdrop-blur-md z-10 md:w-96 h-64'
+                  className='flex w-full flex-col justify-between rounded-2xl bg-white/10 p-6  z-10 md:w-96 h-64 backdrop-blur-lg shadow-lg hover:shadow-xl transition-shadow'
                   style={{ transformStyle: 'preserve-3d' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -111,11 +111,12 @@ const Homepage = ({
                 >
                   <div style={{ transform: 'translateZ(40px)' }}>
                     <h2 className='text-lg font-bold text-white lowercase'>
-                      welcome
+                      Hi! I'm Salman jaher.
                     </h2>
                     <p className='mt-2 text-gray-200 lowercase'>
-                      this is the about me section where you can introduce
-                      yourself.
+                      welcome to my website! im an engineer at capital one, with
+                      a masters from UT Dallas. explore my website to learn more
+                      about me :)
                     </p>
                   </div>
                   <div
@@ -124,13 +125,13 @@ const Homepage = ({
                   >
                     <button
                       onClick={onNavigateToResume}
-                      className='underline md:no-underline md:hover:underline z-20'
+                      className='underline z-20'
                     >
                       resume
                     </button>
                     <button
                       onClick={onNavigateToPortfolio}
-                      className='underline md:no-underline md:hover:underline z-20'
+                      className='underline z-20'
                     >
                       portfolio
                     </button>

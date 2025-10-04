@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Homepage from './components/Homepage';
 import ResumePage from './components/ResumePage';
 import PortfolioPage from './components/PortfolioPage';
@@ -8,6 +8,27 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [direction, setDirection] = useState('down');
+
+  useEffect(() => {
+    const createRandomOrbs = () => {
+      const numOrbs = 6;
+      const gradients = [];
+
+      for (let i = 0; i < numOrbs; i++) {
+        const x = Math.floor(Math.random() * 100); // Random X position (0-100%)
+        const y = Math.floor(Math.random() * 100); // Random Y position (0-100%)
+        const size = Math.floor(Math.random() * 400 + 400); // Random size (400-800px)
+
+        gradients.push(
+          `radial-gradient(${size}px circle at ${x}% ${y}%, rgba(147, 197, 253, 0.1), transparent 50%)`
+        );
+      }
+
+      document.body.style.backgroundImage = gradients.join(', ');
+    };
+
+    createRandomOrbs();
+  }, []); // The empty dependency array ensures this runs only once
 
   const homeVariants = {
     initial: (direction) => {
@@ -37,7 +58,7 @@ function App() {
   };
 
   return (
-    <main className='bg-gray-900 h-screen'>
+    <main className='h-screen'>
       <AnimatePresence custom={direction}>
         {activeSection === 'home' && (
           <motion.div

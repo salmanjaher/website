@@ -51,7 +51,7 @@ const resumeData = {
         ],
       },
       {
-        role: 'Early Technology Internship | Software Engineer',
+        role: 'Software Engineer Intern',
         company: 'Capital One',
         location: 'McLean, VA',
         date: 'June 2022 - August 2022',

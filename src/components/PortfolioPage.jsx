@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaLinkedin,
+  FaGithub,
+  FaInstagram,
+  FaCamera,
+} from 'react-icons/fa';
 
 import photo1 from '../assets/images/IMG_2939.jpeg';
 import photo2 from '../assets/images/IMG_2989.jpeg';
@@ -76,14 +83,14 @@ const PortfolioPage = ({ onNavigateHome }) => {
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50;
     if (info.offset.x > swipeThreshold) {
-      paginate(-1); // Previous
+      paginate(-1);
     } else if (info.offset.x < -swipeThreshold) {
-      paginate(1); // Next
+      paginate(1);
     }
   };
 
   return (
-    <div className='relative h-screen w-full flex flex-col items-center justify-center bg-gray-900 text-white overflow-hidden'>
+    <div className='relative h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden'>
       <button
         onClick={onNavigateHome}
         className='absolute left-10 top-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-30 pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)]'
@@ -92,8 +99,39 @@ const PortfolioPage = ({ onNavigateHome }) => {
         <span>home</span>
       </button>
 
-      <div className='absolute top-10 right-10 text-xs opacity-75 lowercase z-20 pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)]'>
-        social links
+      <div className='absolute top-10 right-10 flex space-x-4 text-gray-400 z-20 pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)]'>
+        <a
+          href='https://github.com/salmanjaher'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='hover:text-white transition-colors'
+        >
+          <FaGithub size='1.5em' />
+        </a>
+        <a
+          href='https://linkedin.com/in/salmanjaher'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='hover:text-white transition-colors'
+        >
+          <FaLinkedin size='1.5em' />
+        </a>
+        <a
+          href='https://instagram.com/salmanjaher'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='hover:text-white transition-colors'
+        >
+          <FaInstagram size='1.5em' />
+        </a>
+        <a
+          href='https://instagram.com/salman.shoots'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='hover:text-white transition-colors'
+        >
+          <FaCamera size='1.5em' />
+        </a>
       </div>
 
       {isMobile ? (
