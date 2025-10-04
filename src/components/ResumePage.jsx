@@ -187,12 +187,9 @@ const ResumePage = ({ onNavigateHome }) => {
           <ResumeCard title={resumeData.activities.title}>
             {resumeData.activities.entries.map((act, i) => (
               <div key={i}>
-                {act.organization}
                 <div>
-                  <p className='font-semibold text-white'>{act.role}</p>
-                  <p className='text-sm text-gray-300 italic'>
-                    {act.organization}
-                  </p>
+                  <p className='font-semibold text-white'>{act.organization}</p>
+                  <p className='text-sm text-gray-300 italic'>{act.role}</p>
                 </div>
                 <p className='text-sm text-gray-300 mt-1'>{act.description}</p>
               </div>

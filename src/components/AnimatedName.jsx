@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const AnimatedName = ({ onAnimationComplete, duration = 2 }) => {
   return (
     <div className='relative text-4xl md:text-5xl font-bold'>
-      <span className='text-gray-500 whitespace-nowrap lowercase'>
+      <span className='text-gray-500 whitespace-nowrap lowercase font-display'>
         salman jaher
       </span>
       <motion.div
@@ -12,7 +12,7 @@ const AnimatedName = ({ onAnimationComplete, duration = 2 }) => {
         transition={{ duration: duration, ease: 'easeInOut' }}
         onAnimationComplete={onAnimationComplete}
       >
-        <span className='text-white whitespace-nowrap lowercase'>
+        <span className='text-white whitespace-nowrap lowercase font-display'>
           salman jaher
         </span>
       </motion.div>
