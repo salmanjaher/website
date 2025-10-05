@@ -113,8 +113,8 @@ const Homepage = ({
                     <h2 className='text-lg font-bold text-white lowercase font-display'>
                       Hi! I'm Salman jaher.
                     </h2>
-                    <p className='mt-2 text-gray-200 lowercase'>
-                      welcome to my website! im an engineer at capital one, with
+                    <p className='mt-2 text-gray-200'>
+                      welcome to my website! im an engineer at Capital One, with
                       a masters from UT Dallas. explore my website to learn more
                       about me :)
                     </p>
