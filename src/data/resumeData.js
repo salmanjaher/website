@@ -19,13 +19,24 @@ const resumeData = {
   skills: {
     title: 'languages & technologies',
     languages:
-      'Python, Java, Go, C++, C, SQL, JavaScript, TypeScript, HTML, CSS, Swift, MIPS Assembly',
+      'Python, Java, Kotlin, Go, C++, C, SQL, JavaScript, TypeScript, HTML, CSS, Swift, MIPS Assembly',
     tools:
-      'Git, AWS, Firebase, PostgreSQL, NewRelic, Node.js, React.js, TailwindCSS, Express.js, Linux, Jenkins, UNIX, Bash, Arduino, Jira, Databricks, Snowflake, Open Telemetry',
+      'Git, AWS, Firebase, PostgreSQL, NewRelic, Node.js, React.js, TailwindCSS, Express.js, Linux, Jenkins, UNIX, Bash, Arduino, Jira, Databricks, Snowflake, Open Telemetry, Jetpack Compose',
   },
   experience: {
     title: 'experience',
     entries: [
+      {
+        role: 'Android Engineer',
+        company: 'Capital One',
+        location: 'New York, NY',
+        date: 'August 2025 - Present',
+        points: [
+          'Engineer a core Android plugin enabling users to securely link external financial accounts, streamlining the process of transferring direct deposits and recurring payments to Capital One',
+          'Develop scalable code using modern Android technologies like Kotlin and Jetpack Compose, to ensure a secure and reliable experience for managing sensitive financial data',
+          'Collaborate with cross-functional product, design, and backend teams to create a seamless and intuitive user journey for account aggregation, significantly reducing friction in the customer on boarding process',
+        ],
+      },
       {
         role: 'Software Engineer Intern',
         company: 'Capital One',
@@ -74,12 +85,6 @@ const resumeData = {
         tech: 'Bash, Powershell, Markdown',
         description:
           'Constructed an interactive terminal-based installer for programmers to help set up new devices for programming.',
-      },
-      {
-        name: 'Recipe Browser',
-        tech: 'JavaScript, Go, Python, React, TailwindCSS',
-        description:
-          'Created a full-stack application that employed complex components to offer users a quick recipe look-up.',
       },
     ],
   },
