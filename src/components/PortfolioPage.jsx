@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaArrowLeft,
@@ -59,6 +59,17 @@ const PortfolioPage = ({ onNavigateHome }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const width = useWindowWidth();
   const isMobile = width < 768;
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    const element = mainRef.current;
+    if (!element) return;
+    const preventScroll = (e) => e.preventDefault();
+    element.addEventListener('touchmove', preventScroll, { passive: false });
+    return () => {
+      element.removeEventListener('touchmove', preventScroll);
+    };
+  }, []);
 
   const paginate = (newDirection) => {
     let newIndex = currentIndex + newDirection;
@@ -90,7 +101,10 @@ const PortfolioPage = ({ onNavigateHome }) => {
   };
 
   return (
-    <div className='relative h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden'>
+    <div
+      ref={mainRef}
+      className='relative h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden overscroll-y-contain'
+    >
       <button
         onClick={onNavigateHome}
         className='absolute left-10 top-10 flex cursor-pointer items-center space-x-2 text-xs opacity-75 transition-opacity hover:opacity-100 lowercase z-30 pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)]'
