@@ -54,21 +54,16 @@ const Homepage = ({
     const swipeThreshold = 50;
     const { offset, velocity } = info;
 
-    // Check if vertical swipe is dominant and fast enough
     if (Math.abs(offset.y) > Math.abs(offset.x) && Math.abs(velocity.y) > 300) {
       if (offset.y < -swipeThreshold) {
-        // Swipe Up
         setHasNavigated(true);
         onNavigateToResume();
       }
-    }
-    // Check if horizontal swipe is dominant and fast enough
-    else if (
+    } else if (
       Math.abs(offset.x) > Math.abs(offset.y) &&
       Math.abs(velocity.x) > 300
     ) {
       if (offset.x < -swipeThreshold) {
-        // Swipe Left
         setHasNavigated(true);
         onNavigateToPortfolio();
       }
@@ -83,15 +78,12 @@ const Homepage = ({
   };
 
   return (
-    <div
+    <motion.div
       ref={mainRef}
       className='relative flex h-screen w-full items-center justify-center overflow-hidden'
       onWheel={handleScroll}
+      onPanEnd={isLoaded ? handlePanEnd : undefined}
     >
-      <motion.div
-        className='absolute inset-0 z-50'
-        onPanEnd={isLoaded ? handlePanEnd : undefined}
-      />
       <AnimatePresence mode='wait'>
         {!isLoaded && playAnimation ? (
           <motion.div key='loader' layoutId='name'>
@@ -224,7 +216,7 @@ const Homepage = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
